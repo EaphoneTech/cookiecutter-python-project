@@ -3,14 +3,26 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
-name = "eaphone-g09-loader"
-version = "1.6.0"
-description = ".g09 file loader for python"
+name = "{{ cookiecutter.project_name }}"
+version = "0.0.1"
+description = "{{ cookiecutter.project_description }}"
 authors = ["Xiaoyu Guo <biggates2010@gmail.com>"]
 readme = "README.md"
+{% if cookiecutter.install_as_package -%}
 packages = [{ include = "eaphone" }]
+{% else -%}
+package-mode = false
+{% endif %}
 
-{% if cookiecutter.inclue_sphinx -%}
+[tool.poetry.dependencies]
+python = ">=3.10,<4"
+
+[tool.poetry.group.ci]
+optional = true
+
+[tool.poetry.group.ci.dependencies]
+
+{% if cookiecutter.include_sphinx -%}
 [tool.poetry.group.docs]
 optional = true
 
@@ -20,7 +32,6 @@ sphinx_rtd_theme = "^2"
 sphinx-last-updated-by-git = "^0.3"
 sphinx = "^7.2"
 {% endif %}
-
 {% if cookiecutter.include_pytest -%}
 [tool.poetry.group.testing]
 optional = true

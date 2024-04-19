@@ -32,7 +32,7 @@ pipeline {
     {% if cookiecutter.install_as_package -%}
     stage('编译 package') {
       steps {
-        sh 'poetry build'
+        sh 'poetry build --format wheel'
       }
     }
     {% endif %}
@@ -40,7 +40,7 @@ pipeline {
     {% if cookiecutter.include_pytest -%}
     stage('运行单元测试') {
       steps {
-        sh 'poetry run pytest'
+        sh 'poetry run tox'
       }
       post {
         always {
@@ -64,6 +64,56 @@ pipeline {
         dir ('./docs') {
           sh 'poetry run sphinx-build -M html source build'
         }
+      }
+      post {
+        always {
+          codingHtmlReport(
+            name: 'sphinx',
+            tag: 'docs',
+            path: 'docs/build/html',
+            des: '文档',
+            entryFile: 'index.html'
+          )
+        }
+      }
+    }
+
+    stage('部署文档') {
+      steps {
+        dir ('./docs/build/') {
+          sh 'mv html {{ cookiecutter.project_name.lower().replace(' ', '-') }}'
+
+          script {
+            def deploy_host = [:]
+            deploy_host.name = "deploy.xinxiangsui.com.cn"
+            deploy_host.host = "deploy.xinxiangsui.com.cn"
+            deploy_host.allowAnyHosts = true
+
+            withCredentials([sshUserPrivateKey(credentialsId: "4636b3da-9993-4b7b-b107-b8d8a2ca57a2", keyFileVariable: 'identity')]) {
+              deploy_host.user = "staticfile"
+              deploy_host.identityFile = identity
+
+              sshPut remote: deploy_host, from: '{{ cookiecutter.project_name.lower().replace(' ', '-') }}', into: '/mnt/test/open/raw/python/'
+            }
+          }
+        }
+      }
+    }
+    {% endif %}
+
+    {% if cookiecutter.install_as_package -%}
+    stage('上传 package') {
+      steps {
+        withCredentials([usernamePassword(
+          credentialsId: env.CODING_ARTIFACTS_CREDENTIALS_ID,
+          usernameVariable: 'TWINE_USERNAME',
+          passwordVariable: 'TWINE_PASSWORD'
+        )]) {
+          sh "poetry config repositories.coding_protected https://biggates-pypi.pkg.coding.net/python-projects/protected"
+          sh "poetry publish --repository coding_protected -u ${TWINE_USERNAME} -p ${TWINE_PASSWORD} --ansi"
+        }
+
+        echo 'wheel 制品上传完成'
       }
     }
     {% endif %}
