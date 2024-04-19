@@ -1,0 +1,24 @@
+{
+    "project_name": "Cookiecutter python project",
+    "project_package": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}",
+    "require_private_repo": true,
+    "install_as_package": true,
+    "use_dedicated_venv": false,
+    "include_sphinx": false,
+    "include_pytest": true,
+    "include_git_cliff": false,
+    "enable_pre_commit": true,
+    "enforce_conventional_commits": false,
+    "setup_ci": false,
+    "__prompts__": {
+        "require_private_repo": "是否依赖易风的私有 pypi 仓库中的包?",
+        "install_as_package": "项目本身是否包含需要安装的依赖 (poetry no-root 模式) ?",
+        "use_dedicated_venv": "是否需要独立的 .venv 环境?",
+        "include_sphinx": "是否需要配置 sphinx 文档?",
+        "include_pytest": "是否需要配置 pytest 测试?",
+        "include_git_cliff": "是否需要配置 git_cliff 用于生成 changelog ?",
+        "enable_pre_commit": "是否需要启用 pre-commit ?",
+        "enforce_conventional_commits": "是否需要启用 conventional commits 检查?",
+        "setup_ci": "是否要配置 CI 用的 jenkinsfile?"
+    }
+}   
