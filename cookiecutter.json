@@ -2,6 +2,8 @@
     "project_name": "Cookiecutter python project",
     "project_package": "eaphone-{{ cookiecutter.project_name.lower().replace(' ', '-') }}",
     "project_description": "Short description for the project",
+    "author_name": "Author Name",
+    "author_email": "name@gmail.com",
     "require_private_repo": true,
     "install_as_package": true,
     "use_dedicated_venv": true,

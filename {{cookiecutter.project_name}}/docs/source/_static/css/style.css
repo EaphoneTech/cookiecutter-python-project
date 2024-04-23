@@ -1,0 +1,33 @@
+/* 整体宽一点 */
+.wy-nav-content {
+    max-width: 1620px;
+  }
+
+  /* 左侧导航条字大一点 */
+  .wy-menu-vertical li.toctree-l3 {
+    font-size: 100%;
+  }
+
+  /* 左侧导航条 hover 效果更明显一点 */
+  .wy-menu-vertical li a:hover {
+    color: #bd2c2a;
+  }
+
+  /* 正文中 code block 放大一点 */
+  .rst-content div[class^='highlight'] pre {
+    font-size: 14px;
+  }
+
+  .rst-content code, .rst-content tt, code{
+    font-size: 14px;
+    color: #BA2121;
+  }
+
+  /* 默认表格内容居中 */
+  th, td {
+    text-align: center;
+  }
+
+  th .highlight, td .highlight {
+    text-align: left;
+  }
