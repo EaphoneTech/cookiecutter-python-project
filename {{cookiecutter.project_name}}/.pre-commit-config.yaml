@@ -1,6 +1,11 @@
+{% if cookiecutter.enforce_conventional_commits -%}
+default_install_hook_types:
+  - commit-msg
+  - pre-commit
+{% endif -%}
 repos:
   - repo: https://e.coding.net/xinxiangsui/github-mirrors/pre-commit-hooks.git
-    rev: v4.5.0
+    rev: v4.6.0
     hooks:
       - id: check-merge-conflict
       - id: check-toml
@@ -13,11 +18,15 @@ repos:
     hooks:
       - id: poetry-check
   - repo: https://e.coding.net/xinxiangsui/github-mirrors/ruff-pre-commit.git
-    rev: v0.3.6
+    rev: v0.4.1
     hooks:
       - id: ruff
+        {% if cookiecutter.include_jupyter_in_doc -%}
         types_or: [python, jupyter]
+        {% endif -%}
         args:
           - '--fix'
       - id: ruff-format
+        {% if cookiecutter.include_jupyter_in_doc -%}
         types_or: [python, jupyter]
+        {% endif -%}

@@ -18,7 +18,7 @@
 # -- Project information -----------------------------------------------------
 
 project = "{{ cookiecutter.project_name }}"
-copyright = u"2024, 广州易风健康科技股份有限公司"
+copyright = u"2024, 广州易风通讯科技股份有限公司"
 author = "{{ cookiecutter.author_name }}"
 
 
@@ -28,7 +28,9 @@ author = "{{ cookiecutter.author_name }}"
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+    {% if cookiecutter.include_jupyter_in_doc -%}
     "myst_nb",
+    {%- endif %}
     "sphinx.ext.autodoc",
     "sphinx.ext.napoleon",
     "sphinx_rtd_theme",

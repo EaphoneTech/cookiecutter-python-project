@@ -8,3 +8,11 @@ cookiecutter template for Python projects
 ```bash
 $ pipx run cookiecutter gh:EaphoneTech/cookiecutter-python-project
 ```
+
+## 开发
+
+### 测试
+
+```bash
+$ cookiecutter C:\git\cookiecutter-python-project
+```
