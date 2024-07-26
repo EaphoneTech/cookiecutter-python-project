@@ -1,3 +1,5 @@
+# 该脚本由 cookiecutter 在生成项目之后运行, 主要目的是为了删去一些不需要的文件
+
 import shutil
 from pathlib import Path
 

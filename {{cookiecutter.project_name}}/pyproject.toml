@@ -15,8 +15,8 @@ package-mode = false
 {% endif %}
 
 [tool.poetry.dependencies]
-python = ">=3.10,<4"
-loguru = "^7.2"
+python = ">=3.10,<3.13"
+loguru = "^0.7"
 
 {% if cookiecutter.setup_ci -%}
 [tool.poetry.group.ci]
@@ -41,7 +41,7 @@ sphinx = "^7.4"
 optional = true
 
 [tool.poetry.group.testing.dependencies]
-pytest = "^8.1"
+pytest = "^8.3"
 pytest-cov = "^5"
 {%- endif %}
 

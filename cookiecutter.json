@@ -29,7 +29,7 @@
         "include_pytest": "是否需要配置 pytest 测试?",
         "include_git_cliff": "是否需要配置 git_cliff 用于生成 changelog ?",
         "enable_pre_commit": "是否需要启用 pre-commit ?",
-        "enforce_conventional_commits": "是否需要启用 conventional commits 检查?",
+        "enforce_conventional_commits": "是否需要强制启用 conventional commits 检查?",
         "setup_ci": "是否要配置 CI 用的 jenkinsfile?"
     }
 }

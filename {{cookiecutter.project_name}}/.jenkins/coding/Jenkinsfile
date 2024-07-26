@@ -1,8 +1,7 @@
 pipeline {
   agent {
     docker {
-      image 'biggates/poetry:1.8.2-py3.10-slim'
-      args '-e PATH=/root/.local/bin/:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+      image 'biggates/poetry:1.8.3-py3.10-slim'
     }
   }
 
