@@ -5,7 +5,7 @@ default_install_hook_types:
 {% endif -%}
 repos:
   - repo: https://e.coding.net/xinxiangsui/github-mirrors/pre-commit-hooks.git
-    rev: v4.6.0
+    rev: v5.0.0
     hooks:
       - id: check-merge-conflict
       - id: check-toml
@@ -14,19 +14,13 @@ repos:
       - id: mixed-line-ending
       - id: trailing-whitespace
   - repo: https://e.coding.net/xinxiangsui/github-mirrors/poetry.git
-    rev: 1.8.0
+    rev: 2.0.1
     hooks:
       - id: poetry-check
   - repo: https://e.coding.net/xinxiangsui/github-mirrors/ruff-pre-commit.git
-    rev: v0.5.5
+    rev: v0.9.1
     hooks:
       - id: ruff
-        {% if cookiecutter.include_jupyter_in_doc -%}
-        types_or: [python, jupyter]
-        {% endif -%}
         args:
           - '--fix'
       - id: ruff-format
-        {% if cookiecutter.include_jupyter_in_doc -%}
-        types_or: [python, jupyter]
-        {% endif -%}

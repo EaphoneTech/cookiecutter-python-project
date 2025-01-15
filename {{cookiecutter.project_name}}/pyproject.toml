@@ -1,13 +1,17 @@
+[project]
+name = "{{ cookiecutter.project_full_package }}"
+version = "0.0.1"
+description = "{{ cookiecutter.project_description }}"
+readme = "README.md"
+requires-python = ">=3.10, <3.14"
+authors = [{ name = "{{ cookiecutter.author_name }}", email = "{{ cookiecutter.author_email }}" }]
+dynamic = ["dependencies"]
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
-name = "{{ cookiecutter.project_full_package }}"
-version = "0.0.1"
-description = "{{ cookiecutter.project_description }}"
-authors = ["{{ cookiecutter.author_name }} <{{ cookiecutter.author_email }}>"]
-readme = "README.md"
 {% if cookiecutter.install_as_package -%}
 packages = [{ include = "eaphone" }]
 {% else -%}
@@ -15,7 +19,7 @@ package-mode = false
 {% endif %}
 
 [tool.poetry.dependencies]
-python = ">=3.10,<3.13"
+python = ">=3.10,<3.14"
 loguru = "^0.7"
 
 {% if cookiecutter.setup_ci -%}
@@ -32,9 +36,9 @@ optional = true
 {%- if cookiecutter.include_jupyter_in_doc -%}
 myst-nb = "^1.1"
 {%- endif %}
-sphinx_rtd_theme = "^2"
+sphinx_rtd_theme = ">=3"
 sphinx-last-updated-by-git = "^0.3"
-sphinx = "^7.4"
+sphinx = ">=8.1"
 {%- endif %}
 {%- if cookiecutter.include_pytest -%}
 [tool.poetry.group.testing]
