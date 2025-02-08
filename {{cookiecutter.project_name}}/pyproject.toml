@@ -16,7 +16,7 @@ build-backend = "poetry.core.masonry.api"
 packages = [{ include = "eaphone" }]
 {% else -%}
 package-mode = false
-{% endif %}
+{% endif -%}
 
 [tool.poetry.dependencies]
 python = ">=3.10,<3.14"
@@ -27,7 +27,8 @@ loguru = "^0.7"
 optional = true
 
 [tool.poetry.group.ci.dependencies]
-{% endif %}
+{% endif -%}
+
 {% if cookiecutter.include_sphinx -%}
 [tool.poetry.group.docs]
 optional = true
@@ -45,7 +46,7 @@ sphinx = ">=8.1"
 optional = true
 
 [tool.poetry.group.testing.dependencies]
-pytest = "^8.3"
+pytest = "^8"
 pytest-cov = "^5"
 {%- endif %}
 
@@ -62,18 +63,15 @@ priority = "supplemental"
 [tool.ruff.lint]
 ignore = ["F821", "E501"]
 select = [
-    # pycodestyle
-    "E",
-    # Pyflakes
-    "F",
-    # pyupgrade
-    "UP",
-    # flake8-bugbear
-    "B",
-    # flake8-simplify
-    "SIM",
-    # isort
-    "I",
+    "E",    # pycodestyle
+    "F",    # Pyflakes
+    "UP",   # pyupgrade
+    "B",    # flake8-bugbear
+    "SIM",  # flake8-simplify
+    "I",    # isort
+    "NPY",  # numpy specific rules
+    "PERF", # perflint
+    "RUF",  # ruff specific rules
 ]
 
 [tool.ruff.lint.isort]
