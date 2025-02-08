@@ -1,7 +1,7 @@
 pipeline {
   agent {
     docker {
-      image 'biggates/poetry:1.8.3-py3.10-slim'
+      image 'biggates/poetry:2.0.1-py3.10-slim'
     }
   }
 
